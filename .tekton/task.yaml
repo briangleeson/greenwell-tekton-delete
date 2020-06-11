@@ -11,6 +11,7 @@ spec:
         - echo 'Greenwell Site - Health Check';
           apt-get -qq update > /dev/null; apt-get -qq -y install curl > /dev/null;
           alive=$(curl https://greenwell-app.eu-de.mybluemix.net/health);
+          sleep 300;
           if [ "$alive" == "200 - Healthy" ];
           then echo "TEST PASS - 200"; exit 0;
           else echo "TEST FAIL - $alive"; exit 1;
