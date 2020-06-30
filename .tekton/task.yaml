@@ -54,5 +54,5 @@ spec:
       command: ["/bin/bash", "-c"]
       args:
         - echo -e "The \033[36menvironment-properties\033[0m for this Step is :'";
-          env;
+          echo $env;
           echo "' [/end]";
