@@ -1,10 +1,10 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: simple-task
+  name: simple-task-bg
 spec:
   steps:
-    - name: simple-step
+    - name: simple-step-bg
       image: ubuntu
       env:
         - name: BUILD_NUMBER
@@ -19,13 +19,13 @@ spec:
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: echo-props
+  name: echo-props-bg
 spec:
   params:
     - name: env
       description: env value
   steps:
-    - name: show-props
+    - name: show-props-bg
       image: ubuntu
       env:
         - name: ENV
@@ -43,10 +43,10 @@ spec:
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: env-prop-from-config
+  name: env-prop-from-config-bg
 spec:
   steps:
-    - name: show-environment
+    - name: show-environment-bg
       image: ubuntu
       envFrom:
         - configMapRef:
