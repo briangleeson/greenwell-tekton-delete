@@ -53,4 +53,4 @@ spec:
             name: environment-properties 
       command: ["/bin/bash", "-c"]
       args:
-        - echo -e "The \033[36menvironment-properties\033[0m for this Step is : \033[34m$env\033[0m";
+        - echo -e "The \033[36menvironment-properties\033[0m for this Step is - \033[34m$env\033[0m";
