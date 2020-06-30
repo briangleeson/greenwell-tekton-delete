@@ -10,15 +10,15 @@ spec:
     - name: env
       description: env property
   tasks:
-    - name: show-build-number
+    - name: show-build-number-bg
       taskRef:
-        name: simple-task
-    - name: echo-task
+        name: simple-task-bg
+    - name: echo-task-bg
       taskRef:
-        name: echo-props
+        name: echo-props-bg
       params:
         - name: env
           value: $(params.env)
-    - name: echo-env
+    - name: echo-env-bg
       taskRef:
-        name: env-prop-from-config
+        name: env-prop-from-config-bg
