@@ -39,3 +39,20 @@ spec:
         - echo -e "The \033[36menvironment\033[0m value is >> \033[34m$ENV\033[0m";
           sleep 30;
           echo "Build $BUILD_NUMBER Complete";
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: env-prop-from-config
+spec:
+  steps:
+    - name: show-environment
+      image: ubuntu
+      envFrom:
+        - configMapRef:
+              name: environment-properties 
+      command: ["/bin/bash", "-c"]
+      args:
+        - echo -e "The \033[36menvironment-properties\033[0m for this Step is :'";
+          env;
+          echo "' [/end]";
