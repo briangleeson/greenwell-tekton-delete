@@ -5,19 +5,19 @@ metadata:
 spec:
   triggers:
     - binding:
-        name: echo-pipeline-binding
+        name: echo-pipeline-binding-bg
       template:
-        name: echo-pipeline-template
+        name: echo-pipeline-template-bg
 ---
 apiVersion: tekton.dev/v1beta1
 kind: TriggerBinding
 metadata:
-  name: echo-pipeline-binding
+  name: echo-pipeline-binding-bg
 ---
 apiVersion: tekton.dev/v1beta1
 kind: TriggerTemplate
 metadata:
-  name: echo-pipeline-template
+  name: echo-pipeline-template-bg
 spec:
   params:
     - name: env
@@ -29,10 +29,10 @@ spec:
         generateName: consumption-monitor-run-
         labels:
           triggertemplated: "true"
-          generatedBy: "echo-example"
+          generatedBy: "echo-example-bg"
       spec:
         pipelineRef:
-          name: echo-props-pipeline
+          name: echo-props-pipeline-bg
         params:
           - name: env
             value: $(params.env)  
