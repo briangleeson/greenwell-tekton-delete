@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: echo-props-pipeline
+  name: echo-props-pipeline-bg
 spec:
   params:
     - name: test
@@ -19,3 +19,6 @@ spec:
       params:
         - name: env
           value: $(params.env)
+    - name: echo-env
+      taskRef:
+        name: env-prop-from-config
