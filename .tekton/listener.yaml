@@ -1,4 +1,4 @@
-apiVersion: tekton.dev/v1alpha1
+apiVersion: tekton.dev/v1beta1
 kind: TriggerTemplate
 metadata:
   name: pipeline-template
@@ -9,25 +9,8 @@ spec:
       default: master
     - name: gitrepositoryurl
       description: The git repository url
-    - name: message
-      description: The message to print
-      default: This is the default message
   resourcetemplates:
-    - apiVersion: tekton.dev/v1alpha1
-      kind: PipelineResource
-      metadata:
-        name: git-source-$(uid)
-        labels:
-          triggertemplated: "true"
-          generatedBy: "triggers-example"
-      spec:
-        type: git
-        params:
-          - name: revision
-            value: $(params.gitrevision)
-          - name: url
-            value: $(params.gitrepositoryurl)
-    - apiVersion: tekton.dev/v1alpha1
+    - apiVersion: tekton.dev/v1beta1
       kind: PipelineRun
       metadata:
         generateName: sample-pipeline-run-
@@ -38,7 +21,7 @@ spec:
         pipelineRef:
           name: sample-pipeline
 ---
-apiVersion: tekton.dev/v1alpha1
+apiVersion: tekton.dev/v1beta1
 kind: TriggerBinding
 metadata:
   name: pipeline-binding
@@ -49,18 +32,7 @@ spec:
     - name: gitrepositoryurl
       value: $(event.repository.url)
 ---
-apiVersion: tekton.dev/v1alpha1
-kind: TriggerBinding
-metadata:
-  name: manual-pipeline-binding
-spec:
-  params:
-    - name: gitrevision
-      value: v0.32.0
-    - name: gitrepositoryurl
-      value: https://github.com/GoogleContainerTools/skaffold
----
-apiVersion: tekton.dev/v1alpha1
+apiVersion: tekton.dev/v1beta1
 kind: EventListener
 metadata:
   name: slow-listener
@@ -70,6 +42,3 @@ spec:
         name: pipeline-binding
       template:
         name: pipeline-template
-      params:
-        - name: message
-          value: Hello from the Git Triggers EventListener!
