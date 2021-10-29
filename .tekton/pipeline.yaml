@@ -1,9 +1,23 @@
-apiVersion: tekton.dev/v1alpha1
+apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
   name: sample-pipeline
 spec:
   tasks:
-    - name: task1
-      taskRef:
-        name: task1
+  - name: task1
+    taskSpec:
+      steps:
+      - name: task-one-step-one
+        image: centos
+        command: ["bash", "-c"]
+        args:
+          - echo "=======================";
+            echo "IBM Cloud - Status";
+            echo "Endpoint - https://cloud.ibm.com";
+            echo "=======================";
+            sleep 10;
+            alive=$(curl -s -o /dev/null -L -w %{http_code} https://cloud.ibm.com);
+            if [ "$alive" == "200" ];
+            then echo "TEST PASS - 200"; exit 0;
+            else echo "TEST FAIL - $alive"; exit 1;
+            fi
