@@ -2,10 +2,10 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: sample-pipeline
+  name: bundle-pipeline
 spec:
   tasks:
-  - name: task1
+  - name: bundle-task1
     taskSpec:
       steps:
       - name: task-one-step-one
@@ -13,7 +13,7 @@ spec:
         command: ["bash", "-c"]
         args:
           - echo "=======================";
-            echo "Task1";
+            echo "Pipeline Bundle Task1";
             echo "=======================";
             echo "IBM Cloud - Status - https://cloud.ibm.com";
             echo "=======================";
@@ -23,7 +23,7 @@ spec:
             then echo "TEST PASS - 200"; exit 0;
             else echo "TEST FAIL - $alive"; exit 1;
             fi
-  - name: task2
+  - name: bundle-task2
     taskSpec:
       steps:
       - name: task-two-step-one
@@ -31,7 +31,7 @@ spec:
         command: ["bash", "-c"]
         args:
           - echo "=======================";
-            echo "Task2";
+            echo "Pipeline Bundle Task2";
             echo "=======================";
             echo "IBM.com - Status - https://ibm.com";
             echo "=======================";

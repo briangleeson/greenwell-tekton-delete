@@ -2,7 +2,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: sample-task1
+  name: bundle-task1
 spec:
   steps:
   - name: task-one-step-one
@@ -10,7 +10,7 @@ spec:
     command: ["bash", "-c"]
     args:
       - echo "=======================";
-        echo "Task1";
+        echo "Bundle Task1";
         echo "=======================";
         echo "IBM Cloud - Status - https://cloud.ibm.com";
         echo "=======================";
@@ -24,7 +24,7 @@ spec:
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: sample-task2
+  name: bundle-task2
 spec:
   steps:
   - name: task-two-step-one
@@ -32,7 +32,7 @@ spec:
     command: ["bash", "-c"]
     args:
       - echo "=======================";
-        echo "Task2";
+        echo "Bundle Task2";
         echo "=======================";
         echo "IBM.com - Status - https://ibm.com";
         echo "=======================";

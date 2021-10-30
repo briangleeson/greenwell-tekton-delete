@@ -1,0 +1,10 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: sample-pipelinerun-
+spec:
+  pipelineRef:
+    name: bundle-pipeline
+    bundle: index.docker.io/beglee/pipelinebundle@sha256:e9c63abe6fe62f191e51ed08e6a2bc74b73ba6e3a0476f68244bdb206f49216d
+  params: []

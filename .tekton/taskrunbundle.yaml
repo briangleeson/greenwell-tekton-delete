@@ -1,0 +1,10 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  generateName: brians-task1-run-
+spec:
+  taskRef:
+    name: bundle-task1
+    bundle: index.docker.io/beglee/taskbundle@sha256:bd36c0373751c2e0bbad9b3508277932425825c0b1060f1ceb364fc535afb230
+  params: []
