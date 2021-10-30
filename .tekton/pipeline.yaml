@@ -1,10 +1,43 @@
 ---
 apiVersion: tekton.dev/v1beta1
-kind: PipelineRun
+kind: Pipeline
 metadata:
-  generateName: brians-pipeline-
+  name: sample-pipeline
 spec:
-  pipelineRef:
-    name: sample-pipeline
-    bundle: index.docker.io/beglee/begleebundle@sha256:c3c315c826f4964a32fe8a04b1e90f5bdf3e2e64769d111dea6d7d16ed5c25bd
-  params: []
+  tasks:
+  - name: task1
+    taskSpec:
+      steps:
+      - name: task-one-step-one
+        image: centos
+        command: ["bash", "-c"]
+        args:
+          - echo "=======================";
+            echo "Task1";
+            echo "=======================";
+            echo "IBM Cloud - Status - https://cloud.ibm.com";
+            echo "=======================";
+            sleep 10;
+            alive=$(curl -s -o /dev/null -L -w %{http_code} https://cloud.ibm.com);
+            if [ "$alive" == "200" ];
+            then echo "TEST PASS - 200"; exit 0;
+            else echo "TEST FAIL - $alive"; exit 1;
+            fi
+  - name: task2
+    taskSpec:
+      steps:
+      - name: task-two-step-one
+        image: centos
+        command: ["bash", "-c"]
+        args:
+          - echo "=======================";
+            echo "Task2";
+            echo "=======================";
+            echo "IBM.com - Status - https://ibm.com";
+            echo "=======================";
+            sleep 10;
+            alive=$(curl -s -o /dev/null -L -w %{http_code} https://ibm.com);
+            if [ "$alive" == "200" ];
+            then echo "TEST PASS - 200"; exit 0;
+            else echo "TEST FAIL - $alive"; exit 1;
+            fi
