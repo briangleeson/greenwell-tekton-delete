@@ -12,11 +12,30 @@ spec:
         command: ["bash", "-c"]
         args:
           - echo "=======================";
-            echo "IBM Cloud - Status";
-            echo "Endpoint - https://cloud.ibm.com";
+            echo "Task1";
+            echo "=======================";
+            echo "IBM Cloud - Status - https://cloud.ibm.com";
             echo "=======================";
             sleep 10;
             alive=$(curl -s -o /dev/null -L -w %{http_code} https://cloud.ibm.com);
+            if [ "$alive" == "200" ];
+            then echo "TEST PASS - 200"; exit 0;
+            else echo "TEST FAIL - $alive"; exit 1;
+            fi
+  - name: task2
+    taskSpec:
+      steps:
+      - name: task-two-step-one
+        image: centos
+        command: ["bash", "-c"]
+        args:
+          - echo "=======================";
+            echo "Task2";
+            echo "=======================";
+            echo "IBM.com - Status - https://ibm.com";
+            echo "=======================";
+            sleep 10;
+            alive=$(curl -s -o /dev/null -L -w %{http_code} https://ibm.com);
             if [ "$alive" == "200" ];
             then echo "TEST PASS - 200"; exit 0;
             else echo "TEST FAIL - $alive"; exit 1;
