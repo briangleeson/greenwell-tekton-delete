@@ -6,5 +6,5 @@ metadata:
 spec:
   pipelineRef:
     name: bundle-pipeline
-    bundle: index.docker.io/beglee/pipelinebundle@sha256:e9c63abe6fe62f191e51ed08e6a2bc74b73ba6e3a0476f68244bdb206f49216d
+    bundle: index.docker.io/beglee/pipelinebundle@sha256:36616e48b3429187a027fd52a44152548a3211b61e4be60efbf83cb85d43b904
   params: []

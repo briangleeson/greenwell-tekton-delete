@@ -5,7 +5,7 @@ metadata:
   name: bundle-pipeline
 spec:
   tasks:
-  - name: bundle-task1
+  - name: bundle-pipeline-task1
     taskSpec:
       steps:
       - name: task-one-step-one
@@ -23,7 +23,7 @@ spec:
             then echo "TEST PASS - 200"; exit 0;
             else echo "TEST FAIL - $alive"; exit 1;
             fi
-  - name: bundle-task2
+  - name: bundle-pipeline-task2
     taskSpec:
       steps:
       - name: task-two-step-one
