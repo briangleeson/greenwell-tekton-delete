@@ -1,0 +1,11 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: double-bundle-pipeline
+spec:
+  tasks:
+  - name: double-bundle-task1
+    taskRef:
+      name: bundle-task1
+      bundle: index.docker.io/beglee/taskbundle@sha256:bd36c0373751c2e0bbad9b3508277932425825c0b1060f1ceb364fc535afb230
