@@ -1,0 +1,10 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: finally-pipelinerun-
+spec:
+  pipelineRef:
+    name: finally-pipeline
+    bundle: index.docker.io/beglee/finallybundle@sha256:5b44897cf49105151f331c6b3b895ddf48bc0446d7e77e32cb28cf72318eddda
+  params: []

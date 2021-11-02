@@ -1,0 +1,30 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: finally-pipeline
+spec:
+  tasks:
+  - name: finally-pipeline-task1
+    taskSpec:
+      steps:
+      - name: task-one-step-one
+        image: centos
+        command: ["bash", "-c"]
+        args:
+          - echo "=======================";
+            echo "Pipeline Bundle Task1";
+            echo "=======================";
+            echo "IBM Cloud - Status - https://cloud.ibm.com";
+            echo "=======================";
+            sleep 10;
+            alive=$(curl -s -o /dev/null -L -w %{http_code} https://cloud.ibm.com);
+            if [ "$alive" == "200" ];
+            then echo "TEST PASS - 200"; exit 0;
+            else echo "TEST FAIL - $alive"; exit 1;
+            fi
+  finally:
+    - name: finally-pipeline-task2
+      taskRef:
+        name: bundle-task2
+        bundle: index.docker.io/beglee/taskbundle@sha256:bd36c0373751c2e0bbad9b3508277932425825c0b1060f1ceb364fc535afb230
