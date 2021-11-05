@@ -9,7 +9,7 @@ spec:
       command: ["bash", "-c"]
       args:
         - echo "=======================";
-          echo "Pipeline Bundle Task1";
+          echo "Pipeline Task1";
           echo "=======================";
           echo "IBM Cloud - Status - https://cloud.ibm.com";
           echo "=======================";
