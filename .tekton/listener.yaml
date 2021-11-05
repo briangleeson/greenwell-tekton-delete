@@ -1,4 +1,4 @@
-apiVersion: tekton.dev/v1alpha1
+apiVersion: tekton.dev/v1beta1
 kind: TriggerTemplate
 metadata:
   name: pipeline-template
@@ -13,7 +13,7 @@ spec:
       description: The message to print
       default: This is the default message
   resourcetemplates:
-    - apiVersion: tekton.dev/v1beta1
+    - apiVersion: v1
       kind: PipelineResource
       metadata:
         name: git-source-$(uid)
@@ -38,7 +38,7 @@ spec:
         pipelineRef:
           name: sample-pipeline
 ---
-apiVersion: tekton.dev/v1alpha1
+apiVersion: tekton.dev/v1beta1
 kind: TriggerBinding
 metadata:
   name: pipeline-binding
@@ -49,7 +49,7 @@ spec:
     - name: gitrepositoryurl
       value: $(event.repository.url)
 ---
-apiVersion: tekton.dev/v1alpha1
+apiVersion: tekton.dev/v1beta1
 kind: EventListener
 metadata:
   name: listener
@@ -59,6 +59,3 @@ spec:
         name: pipeline-binding
       template:
         name: pipeline-template
-      params:
-        - name: message
-          value: Hello from the Git Triggers EventListener!
