@@ -5,13 +5,17 @@ metadata:
 spec:
   steps:
     - name: task-one-step-one
-      image: ubuntu
+      image: centos
       command: ["bash", "-c"]
       args:
-        - echo 'Greenwell Site - Health Check';
-          apt-get -qq update > /dev/null; apt-get -qq -y install curl > /dev/null;
-          alive=$(curl https://greenwell-app.eu-de.mybluemix.net/health);
-          if [ "$alive" == "200 - Healthy" ];
+        - echo "=======================";
+          echo "Pipeline Bundle Task1";
+          echo "=======================";
+          echo "IBM Cloud - Status - https://cloud.ibm.com";
+          echo "=======================";
+          sleep 10;
+          alive=$(curl -s -o /dev/null -L -w %{http_code} https://cloud.ibm.com);
+          if [ "$alive" == "200" ];
           then echo "TEST PASS - 200"; exit 0;
           else echo "TEST FAIL - $alive"; exit 1;
           fi
