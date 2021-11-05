@@ -9,13 +9,13 @@ spec:
       command: ["bash", "-c"]
       args:
         - echo "=======================";
-          echo "Greenwell Site - Health Check";
-          echo "Using https://github.com/ziheng-c/greenwell-tekton.git";
-          echo "Endpoint - https://greenwell-app.eu-de.mybluemix.net/health";
+          echo "Pipeline Task1";
           echo "=======================";
-          sleep 30;
-          alive=$(curl -s -S -k https://greenwell-app.eu-de.mybluemix.net/health);
-          if [ "$alive" == "200 - Healthy" ];
+          echo "IBM Cloud - Status - https://cloud.ibm.com";
+          echo "=======================";
+          sleep 10;
+          alive=$(curl -s -o /dev/null -L -w %{http_code} https://cloud.ibm.com);
+          if [ "$alive" == "200" ];
           then echo "TEST PASS - 200"; exit 0;
           else echo "TEST FAIL - $alive"; exit 1;
           fi
