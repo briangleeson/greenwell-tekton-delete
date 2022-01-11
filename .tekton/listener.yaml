@@ -42,3 +42,15 @@ spec:
         name: pipeline-binding
       template:
         name: pipeline-template
+---
+apiVersion: tekton.dev/v1beta1
+kind: EventListener
+metadata:
+  name: remove-me-listener
+spec:
+  triggers:
+    - binding:
+        name: pipeline-binding
+      template:
+        name: pipeline-template
+
